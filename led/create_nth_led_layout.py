@@ -6,9 +6,10 @@ import json
 
 MAPPING = {}
 
-ROWS = 18  
+ROWS = 12  
 COLS = 11
-LED_SPACING = 3
+LED_SPACING = 1 
+
 
 
 # Every Col Bottom>Up Left>Right
@@ -47,8 +48,8 @@ for c in range (0, COLS):
         led_number = led_number + LED_SPACING
         if (hold == "E13"):
             led_number = led_number + 1
-        if (hold == "I9"):
-            led_number = led_number + 1
+ #       if (hold == "I9"):
+ #           led_number = led_number + 1
 
 
 #print(layout)

@@ -133,11 +133,11 @@ class MoonApplication(dbus.service.Object):
         return response
 
 def register_app_cb():
-    print('GATT application registered')
+    logger.info('GATT application registered')
 
 
 def register_app_error_cb(error):
-    print('Failed to register application: ' + str(error))
+    logger.info('Failed to register application: ' + str(error))
     mainloop.quit()
 
 
@@ -242,7 +242,7 @@ if __name__ == '__main__':
     logger = logging.getLogger('moonboard.ble')
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
-
+    args.debug = True
     if args.debug:
         logger.setLevel(logging.DEBUG)
     else:

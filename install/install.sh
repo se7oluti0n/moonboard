@@ -1,38 +1,38 @@
 #!/bin/bash
 
 echo "Enable SPI"
-sudo sed -i 's/\#dtparam=spi=on/dtparam=spi=on/g' /boot/config.txt
+#sudo sed -i 's/\#dtparam=spi=on/dtparam=spi=on/g' /boot/config.txt
 
-echo "Disable Audio"
-sudo sed -i 's/\dtparam=audio=on/#dtparam=audio=on/g' /boot/config.txt
-echo blacklist snd_bcm2835 | sudo tee /etc/modprobe.d/raspi-blacklist.conf 
+#echo "Disable Audio"
+#sudo sed -i 's/\dtparam=audio=on/#dtparam=audio=on/g' /boot/config.txt
+#echo blacklist snd_bcm2835 | sudo tee /etc/modprobe.d/raspi-blacklist.conf 
 
 
 # Install dependencies
 echo "Install dependencies"
-sudo apt-get update
-sudo apt-get upgrade
+#sudo apt-get update
+#sudo apt-get upgrade
 
 echo "Install + build led drivers"
-sudo apt-get -y install git vim python3-pip python3-rpi.gpio gcc make build-essential
-sudo apt-get -y install libatlas-base-dev 
-sudo apt-get -y install python-dev swig scons # for building WS2811 drivers
+#sudo apt-get -y install git vim python3-pip python3-rpi.gpio gcc make build-essential
+#sudo apt-get -y install libatlas-base-dev 
+#sudo apt-get -y install python-dev swig scons # for building WS2811 drivers
 
 echo "Install application"
-test -d moonboard || git clone https://github.com/8cH9azbsFifZ/moonboard.git
-cd moonboard
-git pull
+#test -d moonboard || git clone https://github.com/8cH9azbsFifZ/moonboard.git
+#cd moonboard
+#git pull
 
 # Installing python dependencies
 echo "Installing python dependencies"
-pip3 install -r install/requirements.txt
-sudo pip3 install -r install/requirements.txt 
+##pip3 install -r install/requirements.txt
+#sudo pip3 install -r install/requirements.txt 
 # pip3 uninstall -y -r install/requirements.txt # uninstall
 
 
 echo "Install service" # FIXME
-cd /home/pi/moonboard/services
-sudo ./install_service.sh moonboard.service 
+#cd /home/pi/moonboard/services
+#sudo ./install_service.sh moonboard.service 
 cd /home/pi/moonboard
 
 
