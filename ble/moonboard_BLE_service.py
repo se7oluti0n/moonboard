@@ -47,7 +47,7 @@ class OutStream:
 
     def read_lines(self):
         try:
-            output = os.read(self._fileno, 1000)
+            output = os.read(self._fileno, 2048)
         except OSError as e:
             if e.errno != errno.EIO: raise
             output = b""
@@ -106,10 +106,13 @@ class MoonApplication(dbus.service.Object):
         flags = self.unstuffer.flags
 
         if new_problem_string is not None:
-            problem= decode_problem_string(new_problem_string, flags)
-            self.new_problem(json.dumps(problem))
-            self.unstuffer.flags = ''
-            start_adv(self.logger)
+            try:
+                problem= decode_problem_string(new_problem_string, flags)
+                self.new_problem(json.dumps(problem))
+                self.unstuffer.flags = ''
+                start_adv(self.logger)
+            except Exception as e:
+                self.logger.info('Decode error: {}'.format(str(e)))
 
     @dbus.service.signal(dbus_interface="com.moonboard",
                             signature="s")

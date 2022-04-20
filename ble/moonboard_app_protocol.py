@@ -61,6 +61,7 @@ class UnstuffSequence():
                 self.logger.debug('MINI')
             if s.find("D") != -1:
                 self.logger.debug('BothLights')
+            self.s=''
         elif s[:2]==self.START:
             self.logger.debug('START')
             if self.s =='':
